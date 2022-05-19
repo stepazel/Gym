@@ -1,12 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymApp", "GymApp\GymApp.csproj", "{D7DC692E-0A52-4B17-908D-C63B6A601EA5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{D7DC692E-0A52-4B17-908D-C63B6A601EA5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{33BB95C3-DD2C-4B68-9B3B-2F1E76BF62E0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{58A42077-B8A3-4326-AD45-9BEA49910B31}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{90BDC8A8-CF38-4E76-B4A6-4C7EE269CF8D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbStorage", "DbStorage\DbStorage.csproj", "{90BDC8A8-CF38-4E76-B4A6-4C7EE269CF8D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
