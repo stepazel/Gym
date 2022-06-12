@@ -12,14 +12,23 @@ public class ExerciseCategoryRepository : IExerciseCategoryRepository
         _db = db;
     }
 
-    public async Task Add(AddExerciseCategoryCommand command)
+    public void Add(AddExerciseCategoryCommand command)
     {
-        var x = await _db.Database.EnsureCreatedAsync();
         var exerciseCategoryDo = new ExerciseCategoryDo
         {
             Name = command.Name
         };
-        await _db.ExerciseCategories.AddAsync(exerciseCategoryDo);
-        await _db.SaveChangesAsync();
+        _db.ExerciseCategories.Add(exerciseCategoryDo);
+        _db.SaveChanges();
+    }
+
+    public GetExerciseCategoryQuery? Get(int id)
+    {
+        var exerciseCategoryDo = _db.ExerciseCategories
+            .FirstOrDefault(exerciseCategoryDo => exerciseCategoryDo.Id == id);
+
+        return exerciseCategoryDo is null 
+            ? null 
+            : new GetExerciseCategoryQuery(exerciseCategoryDo.Id, exerciseCategoryDo.Name);
     }
 }

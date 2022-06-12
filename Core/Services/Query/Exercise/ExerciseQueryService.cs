@@ -9,8 +9,4 @@ public class ExerciseQueryService : IExerciseQueryService
         throw new NotImplementedException();
     }
 
-    public ExerciseCategory GetCategory(int id)
-    {
-        return new ExerciseCategory(id, "Legs");
-    }
 }

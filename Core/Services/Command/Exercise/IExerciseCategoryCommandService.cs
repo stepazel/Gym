@@ -2,5 +2,5 @@
 
 public interface IExerciseCategoryCommandService
 {
-    public Task Add(AddExerciseCategoryRequest request);
+    public void Add(AddExerciseCategoryRequest request);
 }

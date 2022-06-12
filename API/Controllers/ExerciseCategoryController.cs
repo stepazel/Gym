@@ -1,4 +1,7 @@
-﻿using Core.Services.Command.Exercise;
+﻿using System.Net;
+using Core.Services.Command.Exercise;
+using Core.Services.Query.ExerciseCategory;
+using Core.Services.Query.ExerciseCategory.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
@@ -9,14 +12,29 @@ public class ExerciseCategoryController
 {
     private readonly IExerciseCategoryCommandService _exerciseCategoryCommandService;
 
-    public ExerciseCategoryController(IExerciseCategoryCommandService exerciseCategoryCommandService)
+    private readonly IExerciseCategoryQueryService _exerciseCategoryQueryService;
+
+    public ExerciseCategoryController(IExerciseCategoryCommandService exerciseCategoryCommandService,
+        IExerciseCategoryQueryService exerciseCategoryQueryService)
     {
         _exerciseCategoryCommandService = exerciseCategoryCommandService;
+        _exerciseCategoryQueryService = exerciseCategoryQueryService;
     }
 
     [HttpPost]
-    public async Task Add(AddExerciseCategoryRequest request)
+    public void Add(AddExerciseCategoryRequest request)
     {
-        await _exerciseCategoryCommandService.Add(request);
+        _exerciseCategoryCommandService.Add(request);
+    }
+
+    [HttpGet("{id:int}")]
+    public GetExerciseCategoryResponse Get(int id)
+    {
+        var query =  _exerciseCategoryQueryService.Get(id);
+
+        if (query is null)
+            throw new BadHttpRequestException($"An Exercise category with id {id} was not found.");
+
+        return new GetExerciseCategoryResponse(query.Id, query.Name);
     }
 }

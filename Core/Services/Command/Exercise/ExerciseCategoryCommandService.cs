@@ -11,11 +11,11 @@ public class ExerciseCategoryCommandService : IExerciseCategoryCommandService
         _exerciseCategoryRepository = exerciseCategoryRepository;
     }
 
-    public async Task Add(AddExerciseCategoryRequest request)
+    public void Add(AddExerciseCategoryRequest request)
     {
         if (string.IsNullOrWhiteSpace(request.Name))
             throw new BadHttpRequestException("The name must contain some characters.");
 
-        await _exerciseCategoryRepository.Add(new AddExerciseCategoryCommand(request.Name));
+        _exerciseCategoryRepository.Add(new AddExerciseCategoryCommand(request.Name));
     }
 }

@@ -14,10 +14,4 @@ public class ExerciseController
     {
         _exerciseQueryService = exerciseQueryService;
     }
-    
-    [HttpGet]
-    public ExerciseCategory Get(int id)
-    {
-        return _exerciseQueryService.GetCategory(id);
-    }
 }

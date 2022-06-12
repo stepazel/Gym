@@ -2,5 +2,7 @@
 
 public interface IExerciseCategoryRepository
 {
-    public Task Add(AddExerciseCategoryCommand command);
+    public void Add(AddExerciseCategoryCommand command);
+
+    public GetExerciseCategoryQuery? Get(int id);
 }

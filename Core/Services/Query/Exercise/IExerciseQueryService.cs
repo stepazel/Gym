@@ -6,5 +6,4 @@ public interface IExerciseQueryService
 {
     public Task<Models.Exercise> Get(int id);
 
-    public ExerciseCategory GetCategory(int id);
 }
