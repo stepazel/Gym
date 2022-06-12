@@ -1,9 +1,16 @@
-﻿namespace Core.Services.Query.Exercise;
+﻿using Core.Services.Query.Exercise.Models;
+
+namespace Core.Services.Query.Exercise;
 
 public class ExerciseQueryService : IExerciseQueryService
 {
-    public async Task<GetExerciseResponse> Get(int id)
+    public Task<Models.Exercise> Get(int id)
     {
-        return new GetExerciseResponse("Bench Press", new ExerciseCategory("Chest"));
+        throw new NotImplementedException();
+    }
+
+    public ExerciseCategory GetCategory(int id)
+    {
+        return new ExerciseCategory(id, "Legs");
     }
 }

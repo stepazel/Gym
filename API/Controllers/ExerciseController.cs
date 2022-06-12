@@ -1,4 +1,5 @@
 using Core.Services.Query.Exercise;
+using Core.Services.Query.Exercise.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
@@ -7,7 +8,7 @@ namespace API.Controllers;
 [Route("[controller]")]
 public class ExerciseController
 {
-    private IExerciseQueryService _exerciseQueryService;
+    private readonly IExerciseQueryService _exerciseQueryService;
     
     public ExerciseController(IExerciseQueryService exerciseQueryService)
     {
@@ -15,8 +16,8 @@ public class ExerciseController
     }
     
     [HttpGet]
-    public async Task<GetExerciseResponse> Get(int id)
+    public ExerciseCategory Get(int id)
     {
-        return await _exerciseQueryService.Get(id);
+        return _exerciseQueryService.GetCategory(id);
     }
 }
