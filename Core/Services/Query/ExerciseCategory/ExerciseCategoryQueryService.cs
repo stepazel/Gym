@@ -19,4 +19,9 @@ public class ExerciseCategoryQueryService : IExerciseCategoryQueryService
 
         return query is null ? null : new GetExerciseCategoryResponse(query.Id, query.Name);
     }
+
+    public List<GetExerciseCategoryResponse> Get()
+    {
+        return _exerciseCategoryRepository.Get().Select(x => new GetExerciseCategoryResponse(x.Id, x.Name)).ToList();
+    }
 }

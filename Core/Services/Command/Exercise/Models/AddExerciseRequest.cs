@@ -1,3 +1,3 @@
 ﻿namespace Core.Services.Command.Exercise.Models;
 
-public record AddExerciseRequest(string Name, int ExerciseCategoryId);
+public record AddExerciseRequest(string Name, int CategoryId);

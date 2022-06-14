@@ -19,6 +19,14 @@ public class ExerciseQueryService : IExerciseQueryService
         if (query is null)
             throw new Exception($"An exercise with id {id} doesn't exist");
         
-        return new GetExerciseResponse(query.Name, query.CategoryName, query.CategoryId);
+        return new GetExerciseResponse(query.Name, query.CategoryName, query.CategoryId, query.Id);
+    }
+
+    public List<GetExerciseResponse> GetAll()
+    {
+        return _exerciseRepository
+            .GetAll()
+            .Select(x => new GetExerciseResponse(x.Name, x.CategoryName, x.CategoryId, x.Id))
+            .ToList();
     }
 }

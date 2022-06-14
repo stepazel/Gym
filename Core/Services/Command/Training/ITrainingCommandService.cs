@@ -6,7 +6,7 @@ public interface ITrainingCommandService
 {
     public void Add();
 
-    public void AddExercise(int trainingId, AddExerciseRequest request);
+    public void AddExercise(int trainingId, AddExerciseTrainingRequest trainingRequest);
 
     public void EndTraining(int trainingId);
 }

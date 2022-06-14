@@ -18,11 +18,11 @@ public class ExerciseCommandService : IExerciseCommandService
 
     public void Add(AddExerciseRequest request)
     {
-        var query = _exerciseCategoryRepository.GetForAddExerciseQuery(request.ExerciseCategoryId);
+        var query = _exerciseCategoryRepository.GetForAddExerciseQuery(request.CategoryId);
 
         if (query.category is null)
-            throw new Exception($"Exercise category with id {request.ExerciseCategoryId} doesn't exist.");
+            throw new Exception($"Exercise category with id {request.CategoryId} doesn't exist.");
         
-        _exerciseRepository.Add(new AddExerciseCommand(request.Name, request.ExerciseCategoryId));
+        _exerciseRepository.Add(new AddExerciseCommand(request.Name, request.CategoryId));
     }
 }

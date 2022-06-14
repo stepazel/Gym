@@ -35,6 +35,12 @@ public class ExerciseCategoryController
         if (query is null)
             throw new BadHttpRequestException($"An Exercise category with id {id} was not found.");
 
-        return new GetExerciseCategoryResponse(query.Id, query.Name);
+        return query;
+    }
+
+    [HttpGet("[action]")]
+    public List<GetExerciseCategoryResponse> Get()
+    {
+        return _exerciseCategoryQueryService.Get();
     }
 }

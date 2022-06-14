@@ -1,13 +1,41 @@
 ﻿@page "/fetchdata"
 @inject HttpClient Http
 
-<PageTitle>Weather forecast</PageTitle>
+<PageTitle>Training</PageTitle>
 
-<h1>Weather forecast</h1>
+<h1>Training</h1>
 
-<p>This component demonstrates fetching data from the server.</p>
 
-@if (forecasts == null)
+@if (Exercises is not null)
+{
+    <div class="form">
+        <label>
+            Exercise
+            <select @bind="ExerciseId">
+                @foreach (var exercise in Exercises)
+                {
+                    <option value="@exercise.Id">@exercise.Name - @exercise.CategoryName</option>
+                }
+            </select>
+        </label>
+        <label>
+            Weight
+            <input @bind="Weight" class="form-control">
+        </label>
+        <label>
+            Sets
+            <input @bind="Sets" class="form-control">
+        </label>
+        <label>
+            Reps
+            <input @bind="Reps" class="form-control">
+        </label>
+
+        <button @onclick="SubmitForm" class="btn">Add exercise</button>
+    </div>
+}
+
+@if (ExerciseTrainings == null)
 {
     <p>
         <em>Loading...</em>
@@ -18,20 +46,20 @@ else
     <table class="table">
         <thead>
         <tr>
-            <th>Date</th>
-            <th>Temp. (C)</th>
-            <th>Temp. (F)</th>
-            <th>Summary</th>
+            <th>Name</th>
+            <th>Weight</th>
+            <th>Sets</th>
+            <th>Reps</th>
         </tr>
         </thead>
         <tbody>
-        @foreach (var forecast in forecasts)
+        @foreach (var exercise in ExerciseTrainings)
         {
             <tr>
-                <td>@forecast.Date.ToShortDateString()</td>
-                <td>@forecast.TemperatureC</td>
-                <td>@forecast.TemperatureF</td>
-                <td>@forecast.Summary</td>
+                <td>@exercise.ExerciseName</td>
+                <td>@exercise.Weight</td>
+                <td>@exercise.Sets</td>
+                <td>@exercise.Reps</td>
             </tr>
         }
         </tbody>
@@ -39,22 +67,66 @@ else
 }
 
 @code {
-    private WeatherForecast[]? forecasts;
+    
+    private int ExerciseId { get; set; }
+    
+    private string Weight { get; set; }
+    
+    private string Sets { get; set; }
+    
+    private string Reps { get; set; }
+    
+    private int TrainingId { get; set; }
+    
+    private List<Exercise>? Exercises { get; set; }
 
+    private List<ExerciseTraining>? ExerciseTrainings { get; set; } = new();
+
+    private class ExerciseTraining
+    {
+        public string ExerciseName { get; set; }
+        
+        public int ExerciseId { get; set; }
+        
+        public float Weight { get; set; }
+        
+        public int Sets { get; set; }
+        
+        public int Reps { get; set; }
+    }
+
+    private class Exercise
+    {
+        public int Id { get; set; }
+        
+        public string Name { get; set; }
+        
+        public string CategoryName { get; set; }
+    }
+    
     protected override async Task OnInitializedAsync()
     {
-        forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("sample-data/weather.json");
+        Exercises = await Http.GetFromJsonAsync<List<Exercise>>("Exercise/Get");
+        TrainingId = await Http.GetFromJsonAsync<int>("Training/GetLastTrainingId");
+        ExerciseTrainings = await Http.GetFromJsonAsync<List<ExerciseTraining>>("Training/GetExerciseTrainings");
     }
 
-    public class WeatherForecast
+    private async Task SubmitForm()
     {
-        public DateTime Date { get; set; }
+        Console.WriteLine(ExerciseId);
+        var exerciseTraining = new ExerciseTraining
+        {
+            ExerciseName = Exercises!.FirstOrDefault(x => x.Id == ExerciseId)!.Name,
+            ExerciseId = ExerciseId,
+            Reps = int.Parse(Reps),
+            Weight = float.Parse(Weight),
+            Sets = int.Parse(Sets)
+        };
 
-        public int TemperatureC { get; set; }
-
-        public string? Summary { get; set; }
-
-        public int TemperatureF => 32 + (int) (TemperatureC / 0.5556);
+        await Http.PostAsJsonAsync($"Training/{TrainingId}/AddExercise", exerciseTraining);
+        
+        ExerciseTrainings!.Add(exerciseTraining);
     }
+
 
 }

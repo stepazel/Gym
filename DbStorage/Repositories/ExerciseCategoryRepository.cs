@@ -40,6 +40,11 @@ public class ExerciseCategoryRepository : IExerciseCategoryRepository
         return new AddExerciseQuery(exerciseCategoryDo is null ? null : new AddExerciseQuery.Category(id));
     }
 
+    public List<GetExerciseCategoryQuery> Get()
+    {
+        return _db.ExerciseCategories.Select(x => new GetExerciseCategoryQuery(x.Id, x.Name)).ToList();
+    }
+
     private ExerciseCategoryDo? GetById(int id)
     {
         return _db.ExerciseCategories.FirstOrDefault(exerciseCategoryDo => exerciseCategoryDo.Id == id);

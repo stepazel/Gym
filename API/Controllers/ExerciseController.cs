@@ -21,14 +21,20 @@ public class ExerciseController
     }
 
     [HttpPost("[action]")]
-    public void Add(string name, int categoryId)
+    public void Add(AddExerciseRequest request)
     {
-        _exerciseCommandService.Add(new AddExerciseRequest(name, categoryId));
+        _exerciseCommandService.Add(request);
     }
 
     [HttpGet("{id:int}")]
     public GetExerciseResponse Get(int id)
     {
         return _exerciseQueryService.Get(id);
+    }
+
+    [HttpGet("[action]")]
+    public List<GetExerciseResponse> Get()
+    {
+        return _exerciseQueryService.GetAll();
     }
 }

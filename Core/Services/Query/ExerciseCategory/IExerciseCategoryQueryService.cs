@@ -5,4 +5,6 @@ namespace Core.Services.Query.ExerciseCategory;
 public interface IExerciseCategoryQueryService
 {
     public GetExerciseCategoryResponse? Get(int id);
+
+    public List<GetExerciseCategoryResponse> Get();
 }

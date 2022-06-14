@@ -7,4 +7,6 @@ public interface IExerciseCategoryRepository
     public GetExerciseCategoryQuery? Get(int id);
 
     public AddExerciseQuery GetForAddExerciseQuery(int id);
+
+    public List<GetExerciseCategoryQuery> Get();
 }

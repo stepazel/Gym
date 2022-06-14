@@ -31,7 +31,15 @@ public class ExerciseRepository : IExerciseRepository
             .FirstOrDefault(exerciseDo => exerciseDo.Id == id);
 
         return exerciseDo is not null
-            ? new GetExerciseQuery(exerciseDo.Name, exerciseDo.CategoryDo.Name, exerciseDo.CategoryDoId)
+            ? new GetExerciseQuery(exerciseDo.Name, exerciseDo.CategoryDo.Name, exerciseDo.CategoryDoId, exerciseDo.Id)
             : null;
+    }
+
+    public List<GetExerciseQuery> GetAll()
+    {
+        return _db.Exercises
+            .Include(x => x.CategoryDo)
+            .Select(x => new GetExerciseQuery(x.Name, x.CategoryDo.Name, x.CategoryDoId, x.Id))
+            .ToList();
     }
 }

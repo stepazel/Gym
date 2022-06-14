@@ -5,4 +5,6 @@ namespace Core.Services.Query.Exercise;
 public interface IExerciseQueryService
 {
     public GetExerciseResponse Get(int id);
+
+    public List<GetExerciseResponse> GetAll();
 }

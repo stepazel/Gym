@@ -18,10 +18,10 @@ public class TrainingCommandService : ITrainingCommandService
         _trainingRepository.Add(new AddTrainingCommand(DateTime.Now));
     }
 
-    public void AddExercise(int trainingId, AddExerciseRequest request)
+    public void AddExercise(int trainingId, AddExerciseTrainingRequest trainingRequest)
     {
-        _trainingRepository.AddExercise(new AddExerciseCommand(trainingId, request.ExerciseId, request.Weight,
-            request.Sets, request.Reps));
+        _trainingRepository.AddExercise(new AddExerciseCommand(trainingId, trainingRequest.ExerciseId, trainingRequest.Weight,
+            trainingRequest.Sets, trainingRequest.Reps));
     }
 
     public void EndTraining(int trainingId)

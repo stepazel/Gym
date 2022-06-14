@@ -1,5 +1,6 @@
 using Core;
 using DbStorage;
+using Microsoft.Net.Http.Headers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,11 @@ DIConfigCore.ConfigureServices(builder.Services);
 DIConfigDbStorage.ConfigureServices(builder.Services);
 
 var app = builder.Build();
+
+app.UseCors(policy => 
+    policy.WithOrigins("http://localhost:7058", "https://localhost:7058")
+        .AllowAnyMethod()
+        .WithHeaders(HeaderNames.ContentType));
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
