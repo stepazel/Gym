@@ -1,6 +1,7 @@
-﻿using Core.DbStorage.Exercises;
+﻿using Core.DbStorage.ExerciseCategory;
+using Core.DbStorage.Exercises;
 
-namespace Core.Services.Command.Exercise;
+namespace Core.Services.Command.ExerciseCategory;
 
 public class ExerciseCategoryCommandService : IExerciseCategoryCommandService
 {

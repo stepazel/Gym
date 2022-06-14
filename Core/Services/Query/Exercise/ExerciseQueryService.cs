@@ -1,12 +1,24 @@
-﻿using Core.Services.Query.Exercise.Models;
+﻿using Core.DbStorage.Exercises;
+using Core.Services.Query.Exercise.Models;
 
 namespace Core.Services.Query.Exercise;
 
 public class ExerciseQueryService : IExerciseQueryService
 {
-    public Task<Models.Exercise> Get(int id)
+    private readonly IExerciseRepository _exerciseRepository;
+
+    public ExerciseQueryService(IExerciseRepository exerciseRepository)
     {
-        throw new NotImplementedException();
+        _exerciseRepository = exerciseRepository;
     }
 
+    public GetExerciseResponse Get(int id)
+    {
+        var query = _exerciseRepository.GetExerciseQuery(id);
+
+        if (query is null)
+            throw new Exception($"An exercise with id {id} doesn't exist");
+        
+        return new GetExerciseResponse(query.Name, query.CategoryName, query.CategoryId);
+    }
 }

@@ -1,3 +1,3 @@
-﻿namespace Core.DbStorage.Exercises;
+﻿namespace Core.DbStorage.ExerciseCategory;
 
 public record AddExerciseCategoryCommand(string Name);

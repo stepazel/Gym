@@ -1,4 +1,5 @@
-﻿using Core.DbStorage.Exercises;
+﻿using Core.DbStorage.ExerciseCategory;
+using Core.DbStorage.Exercises;
 using DbStorage.DatabaseObjects;
 
 namespace DbStorage.Repositories;
@@ -30,5 +31,17 @@ public class ExerciseCategoryRepository : IExerciseCategoryRepository
         return exerciseCategoryDo is null 
             ? null 
             : new GetExerciseCategoryQuery(exerciseCategoryDo.Id, exerciseCategoryDo.Name);
+    }
+
+    public AddExerciseQuery GetForAddExerciseQuery(int id)
+    {
+        var exerciseCategoryDo = GetById(id);
+
+        return new AddExerciseQuery(exerciseCategoryDo is null ? null : new AddExerciseQuery.Category(id));
+    }
+
+    private ExerciseCategoryDo? GetById(int id)
+    {
+        return _db.ExerciseCategories.FirstOrDefault(exerciseCategoryDo => exerciseCategoryDo.Id == id);
     }
 }

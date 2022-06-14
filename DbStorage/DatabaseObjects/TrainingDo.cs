@@ -1,17 +1,16 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using static System.String;
 
 namespace DbStorage.DatabaseObjects;
 
-public class ExerciseDo
+public class TrainingDo
 {
     [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
     
-    public string Name { get; set; } = Empty;
-
-    public ExerciseCategoryDo CategoryDo { get; set; } = null!;
+    public DateTime Start { get; set; }
     
-    public int CategoryDoId { get; set; }
+    public DateTime End { get; set; }
+
+    public List<ExerciseDo> Exercises { get; set; } = new();
 }

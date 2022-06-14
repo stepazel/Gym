@@ -1,4 +1,5 @@
-﻿using Core.DbStorage.Exercises;
+﻿using Core.DbStorage.ExerciseCategory;
+using Core.DbStorage.Exercises;
 using Core.Services.Query.ExerciseCategory.Models;
 
 namespace Core.Services.Query.ExerciseCategory;

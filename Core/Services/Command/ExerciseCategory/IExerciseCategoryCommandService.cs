@@ -1,4 +1,4 @@
-﻿namespace Core.Services.Command.Exercise;
+﻿namespace Core.Services.Command.ExerciseCategory;
 
 public interface IExerciseCategoryCommandService
 {

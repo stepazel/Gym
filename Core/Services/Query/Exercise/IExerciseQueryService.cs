@@ -4,6 +4,5 @@ namespace Core.Services.Query.Exercise;
 
 public interface IExerciseQueryService
 {
-    public Task<Models.Exercise> Get(int id);
-
+    public GetExerciseResponse Get(int id);
 }

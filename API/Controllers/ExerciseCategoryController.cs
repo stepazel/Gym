@@ -1,5 +1,5 @@
 ﻿using System.Net;
-using Core.Services.Command.Exercise;
+using Core.Services.Command.ExerciseCategory;
 using Core.Services.Query.ExerciseCategory;
 using Core.Services.Query.ExerciseCategory.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -27,7 +27,7 @@ public class ExerciseCategoryController
         _exerciseCategoryCommandService.Add(request);
     }
 
-    [HttpGet("{id:int}")]
+    [HttpGet("{id:int}/[action]")]
     public GetExerciseCategoryResponse Get(int id)
     {
         var query =  _exerciseCategoryQueryService.Get(id);
