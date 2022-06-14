@@ -1,5 +1,6 @@
 ﻿using Core.Services.Command.Exercise;
 using Core.Services.Command.ExerciseCategory;
+using Core.Services.Command.Training;
 using Core.Services.Query.Exercise;
 using Core.Services.Query.ExerciseCategory;
 
@@ -16,5 +17,6 @@ public class DIConfigCore
         // Command services
         services.AddScoped<IExerciseCategoryCommandService, ExerciseCategoryCommandService>();
         services.AddScoped<IExerciseCommandService, ExerciseCommandService>();
+        services.AddScoped<ITrainingCommandService, TrainingCommandService>();
     }
 }

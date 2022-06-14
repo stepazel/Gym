@@ -12,4 +12,8 @@ public class GymAppContext : DbContext
     public DbSet<ExerciseCategoryDo> ExerciseCategories => Set<ExerciseCategoryDo>();
 
     public DbSet<ExerciseDo> Exercises => Set<ExerciseDo>();
+
+    public DbSet<TrainingDo> Trainings => Set<TrainingDo>();
+
+    public DbSet<ExerciseTrainingDo> ExerciseTrainings => Set<ExerciseTrainingDo>();
 }

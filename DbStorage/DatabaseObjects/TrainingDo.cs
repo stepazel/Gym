@@ -10,7 +10,7 @@ public class TrainingDo
     
     public DateTime Start { get; set; }
     
-    public DateTime End { get; set; }
+    public DateTime? End { get; set; }
 
     public List<ExerciseDo> Exercises { get; set; } = new();
 }

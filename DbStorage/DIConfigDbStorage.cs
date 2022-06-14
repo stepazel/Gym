@@ -1,5 +1,6 @@
 ﻿using Core.DbStorage.ExerciseCategory;
 using Core.DbStorage.Exercises;
+using Core.DbStorage.Training;
 using DbStorage.Repositories;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,6 +13,7 @@ public class DIConfigDbStorage
         // Repositories
         services.AddScoped<IExerciseCategoryRepository, ExerciseCategoryRepository>();
         services.AddScoped<IExerciseRepository, ExerciseRepository>();
+        services.AddScoped<ITrainingRepository, TrainingRepository>();
 
         services.AddDbContext<GymAppContext>(options =>
             options.UseSqlServer(

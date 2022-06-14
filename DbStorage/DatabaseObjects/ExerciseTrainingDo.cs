@@ -9,8 +9,12 @@ public class ExerciseTrainingDo
     public int Id { get; set; }
 
     public TrainingDo TrainingDo { get; set; } = null!;
+    
+    public int TrainingDoId { get; set; }
 
     public ExerciseDo ExerciseDo { get; set; } = null!;
+    
+    public int ExerciseDoId { get; set; }
     
     public float Weight { get; set; }
     
